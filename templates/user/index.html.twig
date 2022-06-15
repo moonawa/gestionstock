@@ -1,0 +1,73 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des Utilisateur{% endblock %}
+
+{% block body %}
+<div class="container">
+        <div class="row">
+
+<div class=" col-md-6 ">
+                <div class="card">
+                    <div class="card-header">Liste des Achats</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <td>Id</td>
+                                <td>Nom</td>
+                                <td>Prénom</td>
+                                <td>Email</td>
+
+                            </tr>
+                            {% for u in users %}
+                            <tr>
+                                <td>{{ u.id }}</td>
+                                <td>{{ u.nom}}</td>
+                                <td>{{ u.prenom }}</td>
+                                <td>{{ u.email }}</td>
+                                
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="card-footer">Moonawa</div>    
+                </div>
+            </div>
+
+<div class=" col-md-6">
+                <div class="card">
+                    <div class="card-header"> Formulaire de gestion des Produits</div>
+                    <div class="card-body">
+{{ form_start(form, {'attr': {'id': 'new_edit_user'}}) }}
+{# utilisation de classes bootstrap pour la mise en forme #}
+        <div class="row">
+                <div class="col-12">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                </div>
+                  <div class="col-12">
+                        {{ form_label(form.prenom) }}
+                        {{ form_widget(form.prenom) }}
+                </div>
+                <div class="col-12">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom) }}
+                </div>
+                <div class="col-12">
+                        {{ form_label(form.password) }}
+                        {{ form_widget(form.password) }}
+                </div>
+                <div class="col-12">
+                        <label for="verifpass">Saisir une seconde fois le mot de passe</label>
+                        <input type="password" id="verifpass" required>
+                </div>
+        </div>
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+</div>
+
+ </div>
+            </div>
+<a href="{{ path('user_index') }}">back to list</a>
+ </div>
+            </div>
+{% endblock %}
